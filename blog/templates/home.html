@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  {% include 'nav.html' %}
+    <h1>Welcome here is our websites home page</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti cumque nulla non impedit! Placeat, quos id. Distinctio laborum officiis sunt, voluptatum aliquam ipsum veniam numquam explicabo? Quidem quia ratione ea fugiat exercitationem et quam, voluptate, blanditiis placeat debitis, magni culpa! Unde consectetur corrupti animi harum ab placeat, minima aliquam iure expedita ea rem iusto commodi.</p>
+
+{% for post in posts %}
+<h2>{{ post.title }}</h2>
+<img src="{{ post.image.url }}" width="500"/ >
+<h5>{{ post.dated|timesince }} Ago Published  {{ post.user }} </h5>
+<p>{{ post.content|slice:200 }}...<a href="{% url 'single' id=post.id %}">View</a></p>
+<a href="{% url 'delete' id=post.id %}">Delete</a>
+{% endfor %}
+</body>
+</html>
